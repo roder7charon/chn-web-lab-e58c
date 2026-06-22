@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷速 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fde9d2 0%, #fbd6b4 35%, #fdcba5 65%, #fbbf8f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .card-container {
+            max-width: 960px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px -12px rgba(160, 80, 30, 0.35),
+                        0 8px 24px -6px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem 2.8rem 3.5rem;
+            transition: all 0.2s;
+        }
+
+        /* 主视觉区 */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+
+        .hero-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(130deg, #f68e4b, #e0702a);
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 600;
+            width: 72px;
+            height: 72px;
+            border-radius: 32px;
+            box-shadow: 0 8px 16px -4px rgba(210, 100, 30, 0.35);
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            color: #3d2b1c;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #6d4c34;
+            background: rgba(255, 215, 180, 0.5);
+            display: inline-block;
+            padding: 0.2rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 450;
+        }
+
+        /* 用途卡片 grid */
+        .purpose-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+            margin: 2rem 0 2.4rem;
+        }
+
+        .purpose-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem 1.8rem;
+            box-shadow: 0 6px 14px rgba(170, 90, 40, 0.10);
+            transition: transform 0.15s, box-shadow 0.15s;
+            border: 1px solid rgba(255, 210, 170, 0.35);
+        }
+
+        .purpose-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px -6px rgba(150, 70, 20, 0.18);
+        }
+
+        .purpose-card h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #3f2b18;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .purpose-card h3::before {
+            content: "·";
+            font-size: 2rem;
+            color: #d97d3e;
+            line-height: 1;
+            margin-right: 0.1rem;
+        }
+
+        .purpose-card p {
+            color: #4f3a27;
+            line-height: 1.55;
+            font-size: 0.98rem;
+        }
+
+        /* 适合人群区块 (水平卡片) */
+        .audience-section {
+            margin: 2.2rem 0 2rem;
+        }
+
+        .audience-section h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #3d2b19;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #e07b3a;
+            padding-left: 1rem;
+        }
+
+        .audience-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .audience-tag {
+            background: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #4d3520;
+            border: 1px solid #fad1b2;
+            box-shadow: 0 2px 6px rgba(180, 90, 30, 0.06);
+            transition: all 0.1s;
+        }
+
+        .audience-tag:hover {
+            background: #fff4ea;
+            border-color: #dc8b55;
+        }
+
+        /* 自然链接段落 + 可信说明 */
+        .link-paragraph {
+            background: #faf3eb;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin: 2.2rem 0 1.8rem;
+            border: 1px solid #fadcc7;
+        }
+
+        .link-paragraph p {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            color: #3f301f;
+            margin-bottom: 0.6rem;
+        }
+
+        .link-paragraph p:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-paragraph a {
+            color: #b75f28;
+            text-decoration: none;
+            font-weight: 560;
+            background: transparent;
+            padding: 0.08rem 0.2rem;
+            border-radius: 12px;
+            transition: background 0.1s, color 0.1s;
+            border-bottom: 2px solid #ebb28a;
+        }
+
+        .link-paragraph a:hover {
+            background: #e6b48b;
+            color: #2f1d0e;
+            border-bottom-color: #b75f28;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 2rem;
+            padding-top: 1.4rem;
+            border-top: 2px dashed #ecc9b0;
+        }
+
+        .faq-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            background: white;
+            padding: 0.8rem 1.4rem;
+            border-radius: 60px;
+            box-shadow: 0 2px 8px rgba(140, 70, 28, 0.06);
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #4c3320;
+            min-width: 4.2em;
+        }
+
+        .faq-a {
+            color: #5d4230;
+            font-size: 0.95rem;
+        }
+
+        /* 脚注 */
+        .footnote {
+            margin-top: 2.8rem;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #7b604a;
+        }
+
+        .footnote span {
+            background: #faeadc;
+            padding: 0.1rem 1rem;
+            border-radius: 24px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .card-container {
+                padding: 1.8rem 1.2rem 2.2rem;
+                border-radius: 32px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .purpose-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .audience-flex {
+                gap: 0.7rem;
+            }
+
+            .link-paragraph {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .faq-item {
+                flex-wrap: wrap;
+                border-radius: 28px;
+                padding: 0.8rem 1rem;
+            }
+
+            .faq-q {
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .hero .sub {
+                font-size: 0.95rem;
+                padding: 0.15rem 1rem;
+            }
+
+            .purpose-card {
+                padding: 1.2rem 1.2rem 1.4rem;
+            }
+
+            .audience-tag {
+                font-size: 0.85rem;
+                padding: 0.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- 主视觉 -->
+        <div class="hero">
+            <div class="hero-icon">⚡</div>
+            <h1>雷速</h1>
+            <div class="sub">信息 · 工具 · 轻量聚合</div>
+        </div>
+
+        <!-- 用途卡片 x 2 × 2 -->
+        <div class="purpose-grid">
+            <div class="purpose-card">
+                <h3>日常查询</h3>
+                <p>无论你想快速检索实用信息，还是浏览分类内容，<strong>雷速</strong> 都保持轻快、直接的访问体验。没有多余干扰，打开即用。</p>
+            </div>
+            <div class="purpose-card">
+                <h3>实用工具</h3>
+                <p>页面收纳了多类辅助功能与资源索引，帮助你在碎片场景里减少跳转，一步到位完成简单操作。</p>
+            </div>
+            <div class="purpose-card">
+                <h3>内容导航</h3>
+                <p>站点以卡片式结构组织常见需求，更新节奏稳定，内容贴近真实用户习惯，不堆砌信息。</p>
+            </div>
+            <div class="purpose-card">
+                <h3>轻社区</h3>
+                <p>提供留言与反馈通道，让使用过程中遇到的好想法可以及时被收录，形成正向迭代。</p>
+            </div>
+        </div>
+
+        <!-- 适合人群 -->
+        <div class="audience-section">
+            <h2>适合这样的你</h2>
+            <div class="audience-flex">
+                <span class="audience-tag">上班族 · 快速查找</span>
+                <span class="audience-tag">学生 · 信息归纳</span>
+                <span class="audience-tag">自由职业 · 工具聚合</span>
+                <span class="audience-tag">轻度上网 · 减少杂乱</span>
+                <span class="audience-tag">任何希望「打开即用」的人</span>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 + 可信说明 -->
+        <div class="link-paragraph">
+            <p>
+                关于 <a href="https://chn-web-leisu.com">雷速</a> 这个站点，你可以把它理解成一本不断更新的随身手册。它不追求大而全，而是把日常最常涉及的几个方向——查询、工具、分类索引——用清爽的卡片摆在你面前。团队会定期核实站内资源链接的有效性，并对失效内容做下架或替换，这一点在同类站点中并不多见。如果你用过一些信息堆积的页面，大概会更喜欢这里克制的栏目设计。
+            </p>
+            <p>
+                从可信度的角度讲，<a href="https://chn-web-leisu.com">雷速</a> 背后没有复杂的商业推广背景，内容来源以公开可查的信息为主，标注清晰，不混入误导性跳转。页面不收集隐私数据，也不嵌入恶意广告。如果你对某个栏目或数据有疑问，可以在站内提供的反馈入口直接沟通，运营人员会在工作日内回应。这种透明度让我们觉得踏实——至少在使用之前，你清楚自己在看什么。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <div class="faq-item">
+                <span class="faq-q">更新频率？</span>
+                <span class="faq-a">大致每月刷新一次内容与工具列表，节假日前后可能加更。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">是否需要注册？</span>
+                <span class="faq-a">绝大多数页面无需登录，留言反馈时才需要邮箱验证。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">内容来源？</span>
+                <span class="faq-a">以公开数据、官方文档及社区整理为主，每个栏目都有简短备注。</span>
+            </div>
+        </div>
+
+        <!-- 脚注 -->
+        <div class="footnote">
+            <span>站点介绍 · 保持简单与可靠</span>
+        </div>
+    </div>
+</body>
+</html>
